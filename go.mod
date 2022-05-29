@@ -1,4 +1,4 @@
-module antrema.com/test
+module github.com/antrema/vault-secret-test
 
 go 1.17
 
