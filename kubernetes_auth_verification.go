@@ -42,7 +42,7 @@ func getSecretWithKubernetesAuth() (string, error) {
 	}
 
 	// get secret from Vault
-	secret, err := client.Logical().Read("kv-v2/data/creds")
+	secret, err := client.Logical().Read("secret/data/hashicorp")
 	if err != nil {
 		return "", fmt.Errorf("unable to read secret: %w", err)
 	}
