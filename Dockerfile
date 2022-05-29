@@ -1,4 +1,15 @@
+FROM debian AS build-env
+
+ADD antrema-cassl.crt /usr/local/share/ca-certificates/antrema-cassl.crt
+ADD antrema-caroot.crt /usr/local/share/ca-certificates/antrema-caroot.crt
+
+RUN apt-get update \
+    && apt-get install -y ca-certificates \
+    && update-ca-certificates
+
 FROM gcr.io/distroless/base-debian10
+
+COPY --from=build-env /etc/ssl/certs /etc/ssl/certs
 
 WORKDIR /
 
