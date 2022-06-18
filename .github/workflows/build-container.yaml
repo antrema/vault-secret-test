@@ -20,7 +20,7 @@ jobs:
           go-version: '1.16'
           check-latest: true
       - name: build go
-        run: go build kubernetes_auth_verification.go -o kubernetes_auth_verification
+        run: GOOS=linux GOARCH=arm64 go build -o kubernetes_auth_verification kubernetes_auth_verification.go
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx
