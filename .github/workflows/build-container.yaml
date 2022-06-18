@@ -13,15 +13,14 @@ jobs:
       packages: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Generate build files
-        uses: thatisuday/go-cross-build@v1
+        uses: actions/checkout@v3
+      - name: Set up Go
+        uses: actions/setup-go@v3
         with:
-          platforms: 'linux/arm64'
-          package: ''
-          compress: 'false'
-          name: kubernetes_auth_verification
-          dest: "./../../"
+          go-version: '1.16'
+          check-latest: true
+      - name: build go
+        run: go build kubernetes_auth_verification.go -o kubernetes_auth_verification
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx
